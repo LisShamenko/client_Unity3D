@@ -70,6 +70,21 @@
      <Compile Include="Assets\Scripts\Network\Server\ServerClient.cs" />
      <Compile Include="Assets\Scripts\Roots\NetworkRoot.cs" />
      <Compile Include="Assets\Scripts\Roots\SceneRoot.cs" />
+     <Compile Include="Assets\Scripts\UI\AuthPanel\AuthPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\FatalErrorPanel\FatalErrorPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\GamePanel\ButtonMovement.cs" />
+     <Compile Include="Assets\Scripts\UI\GamePanel\ButtonProperties.cs" />
+     <Compile Include="Assets\Scripts\UI\GamePanel\ButtonsPool.cs" />
+     <Compile Include="Assets\Scripts\UI\GamePanel\CalculateSpawnPoints.cs" />
+     <Compile Include="Assets\Scripts\UI\GamePanel\Game.cs" />
+     <Compile Include="Assets\Scripts\UI\GamePanel\GamePanel.cs" />
+     <Compile Include="Assets\Scripts\UI\GamePanel\Spawner.cs" />
+     <Compile Include="Assets\Scripts\UI\LodingPanel\LodingPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\ResultsPanel\ResultsPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\ResultsPanel\ScoreItem.cs" />
+     <Compile Include="Assets\Scripts\UI\ResultsPanel\ScoreItemPool.cs" />
+     <Compile Include="Assets\Scripts\UI\UIPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\UIRoots.cs" />
  <Reference Include="UnityEngine.CoreModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.30f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
  </Reference>

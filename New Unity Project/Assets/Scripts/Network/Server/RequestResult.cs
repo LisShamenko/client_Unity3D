@@ -16,4 +16,10 @@ namespace NewUnityProject.Network.Server
         /// <summary>Объект результата.</summary>
         public ResponseObject Result;
     }
+
+    public static class Status
+    {
+        public static readonly string Success = "success";
+        public static readonly string Fail = "fail";
+    }
 }

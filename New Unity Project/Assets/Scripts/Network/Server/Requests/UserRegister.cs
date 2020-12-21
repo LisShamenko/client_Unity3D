@@ -11,9 +11,7 @@ namespace NewUnityProject.Network.Server.Requests
 	{
 		// 
 		[SerializeField] private HandlerPoolBase _handlerPool;
-		//
-		[SerializeField] private UserTokenData _data;
-		//
+		// 
 		[SerializeField] private RequestResult<UserTokenData> _requestResult;		
 		//
 		[SerializeField] private string _action = "Register";
@@ -44,7 +42,6 @@ namespace NewUnityProject.Network.Server.Requests
 			if (handlerReady.Handler.IsComplete())
 			{
 				_requestResult = ServerClient.ReceiveRequestResult<UserTokenData>(handlerReady);
-				_data = _requestResult.Result;
 				LoadingCompleteCall();
 			}
 		}
@@ -57,21 +54,21 @@ namespace NewUnityProject.Network.Server.Requests
 
 
         // 
-        public delegate void LoadingCompleteDelegate(UserTokenData data);
+        public delegate void LoadingCompleteDelegate(RequestResult<UserTokenData> requestResult);
+
+        //
+        private event LoadingCompleteDelegate LoadingCompleteEvent;
 
 		// 		
 		public void SetLoadingComplete(LoadingCompleteDelegate loadCallback)
 		{
 			LoadingCompleteEvent = loadCallback;
 		}
-
-        //
-        private event LoadingCompleteDelegate LoadingCompleteEvent;
         //
         private void LoadingCompleteCall()
         {
             if (LoadingCompleteEvent != null)
-                LoadingCompleteEvent(_data);
+                LoadingCompleteEvent(_requestResult);
         }
 
 

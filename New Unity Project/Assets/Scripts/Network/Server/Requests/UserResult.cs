@@ -12,8 +12,6 @@ namespace NewUnityProject.Network.Server.Requests
 		// 
 		[SerializeField] private HandlerPoolBase _handlerPool;
 		//
-		[SerializeField] private string _data;
-		//
 		[SerializeField] private RequestResult<string> _requestResult;
 		//
 		[SerializeField] private string _action = "Result";
@@ -44,7 +42,6 @@ namespace NewUnityProject.Network.Server.Requests
 			if (handlerReady.Handler.IsComplete())
 			{
 				_requestResult = ServerClient.ReceiveRequestResult<string>(handlerReady);
-				_data = _requestResult.Result;
 				LoadingCompleteCall();
 			}
 		}
@@ -57,21 +54,21 @@ namespace NewUnityProject.Network.Server.Requests
 
 
         // 
-        public delegate void LoadingCompleteDelegate(string data);
+        public delegate void LoadingCompleteDelegate(RequestResult<string> requestResult);
+
+        //
+        private event LoadingCompleteDelegate LoadingCompleteEvent;
 
 		// 		
 		public void SetLoadingComplete(LoadingCompleteDelegate loadCallback)
 		{
 			LoadingCompleteEvent = loadCallback;
 		}
-
-        //
-        private event LoadingCompleteDelegate LoadingCompleteEvent;
         //
         private void LoadingCompleteCall()
         {
             if (LoadingCompleteEvent != null)
-                LoadingCompleteEvent(_data);
+                LoadingCompleteEvent(_requestResult);
         }
 
 

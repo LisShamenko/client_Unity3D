@@ -51,37 +51,37 @@ namespace NewUnityProject.Roots
 			_gameResults.ResolveDependencies(_handlerPool);
 
 			// 
-			_gameVersion.SetLoadingComplete(delegate(GameVersionData data) 
+			_gameVersion.SetLoadingComplete(delegate(RequestResult<GameVersionData> requestResult) 
 			{ 
-				gameVersionCallback(data);
+				gameVersionCallback(requestResult);
 				_isGameVersionLoading = false;
 			});
 
 			// 
-			_userRegister.SetLoadingComplete(delegate(UserTokenData data) 
+			_userRegister.SetLoadingComplete(delegate(RequestResult<UserTokenData> requestResult) 
 			{ 
-				userRegisterCallback(data);
+				userRegisterCallback(requestResult);
 				_isUserRegisterLoading = false;
 			});
 
 			// 
-			_userLogin.SetLoadingComplete(delegate(UserTokenData data) 
+			_userLogin.SetLoadingComplete(delegate(RequestResult<UserTokenData> requestResult) 
 			{ 
-				userLoginCallback(data);
+				userLoginCallback(requestResult);
 				_isUserLoginLoading = false;
 			});
 
 			// 
-			_userResult.SetLoadingComplete(delegate(string data) 
+			_userResult.SetLoadingComplete(delegate(RequestResult<string> requestResult) 
 			{ 
-				userResultCallback(data);
+				userResultCallback(requestResult);
 				_isUserResultLoading = false;
 			});	
 
 			// 
-			_gameResults.SetLoadingComplete(delegate(GameResultsData data) 
+			_gameResults.SetLoadingComplete(delegate(RequestResult<GameResultsData> requestResult) 
 			{ 
-				gameResultsCallback(data);
+				gameResultsCallback(requestResult);
 				_isGameResultsLoading = false;
 			});				
 		}

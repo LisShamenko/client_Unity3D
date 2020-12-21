@@ -12,8 +12,6 @@ namespace NewUnityProject.Network.Server.Requests
 		// 
 		[SerializeField] private HandlerPoolBase _handlerPool;
 		//
-		[SerializeField] private GameVersionData _data;
-		//
 		[SerializeField] private RequestResult<GameVersionData> _requestResult;
 		//
 		[SerializeField] private string _action = "GameVersion";
@@ -40,7 +38,6 @@ namespace NewUnityProject.Network.Server.Requests
 			if (handlerReady.Handler.IsComplete())
 			{
 				_requestResult = ServerClient.ReceiveRequestResult<GameVersionData>(handlerReady);
-				_data = _requestResult.Result;
 				LoadingCompleteCall();
 			}
 		}
@@ -53,21 +50,21 @@ namespace NewUnityProject.Network.Server.Requests
 
 
         // 
-        public delegate void LoadingCompleteDelegate(GameVersionData data);
+        public delegate void LoadingCompleteDelegate(RequestResult<GameVersionData> requestResult);
+
+        //
+        private event LoadingCompleteDelegate LoadingCompleteEvent;
 
 		// 		
 		public void SetLoadingComplete(LoadingCompleteDelegate loadCallback)
 		{
 			LoadingCompleteEvent = loadCallback;
 		}
-
-        //
-        private event LoadingCompleteDelegate LoadingCompleteEvent;
         //
         private void LoadingCompleteCall()
         {
             if (LoadingCompleteEvent != null)
-                LoadingCompleteEvent(_data);
+                LoadingCompleteEvent(_requestResult);
         }
 
 
